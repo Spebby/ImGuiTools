@@ -6,7 +6,7 @@
 #include <chrono>
 #include <vector>
 #include <tuple>
-#include "imgui/imgui.h"
+#include "../imgui/imgui.h"
 
 class Logger {
 	public:
@@ -16,8 +16,7 @@ class Logger {
 		ERROR   = 1 << 2  // 100
 	};
 
-	Logger();
-	~Logger();
+	static Logger& getInstance();
 
 	void saveLog();
 	/**
@@ -32,6 +31,10 @@ class Logger {
 	void draw();
 
 	private:
+	Logger();
+	Logger(const Logger&) = delete;
+	Logger& operator=(const Logger&) = delete;
+	~Logger();
 	// rows to be rendered by the logger.
 	std::vector<std::tuple<Level, std::string, std::string>> rows;
 	/** Is the GUI out of date? */

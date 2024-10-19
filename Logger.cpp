@@ -25,6 +25,11 @@ std::string formatTime(const std::chrono::system_clock::time_point& time) {
 	return oss.str();
 }
 
+Logger& Logger::getInstance() {
+	static Logger instance;
+	return instance;
+}
+
 Logger::Logger() : outfile("prev.log"), startTime(std::chrono::system_clock::now()),
 	visLevel(7), dirty(true) {
 	log("Logger initialised");
