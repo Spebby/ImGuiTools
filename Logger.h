@@ -31,9 +31,6 @@ class Logger {
 	// awesome gui stuff
 	void draw();
 
-	std::string formatCords(const float a, const float b) const;
-	std::string formatCords(const int a, const int b) const;
-
 	private:
 	Logger();
 	Logger(const Logger&) = delete;
@@ -47,3 +44,6 @@ class Logger {
 	std::ofstream outfile;
     const std::chrono::system_clock::time_point startTime;
 };
+
+// Reference Alias
+extern Logger& Loggy;

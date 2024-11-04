@@ -9,6 +9,9 @@
 #include <algorithm>
 #include <filesystem>
 
+// Reference Alias.
+Logger& Loggy = Logger::getInstance();
+
 /**
  * @return string of the current time, formatted as Y:M:D H:M:S
  */
