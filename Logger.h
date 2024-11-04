@@ -6,6 +6,7 @@
 #include <chrono>
 #include <vector>
 #include <tuple>
+#include <cmath>
 #include "../imgui/imgui.h"
 
 class Logger {
@@ -30,6 +31,9 @@ class Logger {
 	// awesome gui stuff
 	void draw();
 
+	std::string formatCords(const float a, const float b) const;
+	std::string formatCords(const int a, const int b) const;
+
 	private:
 	Logger();
 	Logger(const Logger&) = delete;
@@ -41,5 +45,5 @@ class Logger {
 	bool dirty;
 	short visLevel;
 	std::ofstream outfile;
-    const std::chrono::system_clock::time_point startTime = std::chrono::system_clock::now();
+    const std::chrono::system_clock::time_point startTime;
 };

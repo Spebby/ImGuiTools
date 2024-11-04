@@ -33,12 +33,6 @@ Logger& Logger::getInstance() {
 Logger::Logger() : outfile("prev.log"), startTime(std::chrono::system_clock::now()),
 	visLevel(7), dirty(true) {
 	log("Logger initialised");
-
-	/**
-	LoadTextureFromFile("img/infoicon.png",  &icons[0], 32, 32);
-	LoadTextureFromFile("img/warnicon.png",  &icons[1], 32, 32);
-	LoadTextureFromFile("img/erroricon.png", &icons[2], 32, 32);
-	*/
 }
 
 Logger::~Logger() {
