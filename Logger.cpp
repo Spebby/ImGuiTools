@@ -108,6 +108,7 @@ void Logger::draw() {
 	ImGui::SetNextWindowSizeConstraints(ImVec2(500, 300), ImVec2(FLT_MAX, FLT_MAX));  // Minimum size 500x300, no max size
 	ImGui::Begin("Logger");
 
+	// child to make this block easier to move around.
 	ImGui::BeginChild("Log Options", ImVec2(0, 27), false);
 	if (ImGui::Button("Clear")) {
 		rows.clear();
@@ -121,6 +122,11 @@ void Logger::draw() {
 		float buttonSize = 20;
 		float window_width = ImGui::GetWindowWidth();
 
+		/*	The following code:
+			Creates a button for Info, Warning and Error.
+			When clicked, the "level" of the logger is changed, which will change what logs will be displayed.
+			NOTE: StyleColor is essentially ImGui's version of CSS.
+		*/
 		ImGui::SameLine(0.0f, 11.0f);
 		ImGui::SetCursorPosX(window_width - 90);
 		if (visLevel & Level::INFO) {
@@ -213,6 +219,8 @@ void Logger::draw() {
 		ImGui::EndTable();
 	}
 
+	// This check is here to prevent the logger from auto scrolling when no new entries are being pushed.
+	// Was impossible to scroll up b/c the logger would auto scroll before input was registered.
 	if (dirty) {
 		// if we aren't at the bottom, don't scroll the user down.
 		if(ImGui::GetScrollY() >= ImGui::GetScrollMaxY()) {
